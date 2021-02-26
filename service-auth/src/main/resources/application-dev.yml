@@ -1,0 +1,50 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_ADDRESS:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:lecare-develop}
+        heart-beat-timeout: 20
+        heart-beat-interval: 60
+  #数据库连接设置
+  datasource:
+    druid:
+      url: jdbc:mysql://${MYSQL_URL:118.89.237.99:13450}/${MYSQL_DATABASE:lecare_cloud_db_v2}?useUnicode=true&allowMultiQueries=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=CONVERT_TO_NULL
+      username: ${MYSQL_USERNAME:cloud_user}
+      password: ${MYSQL_PASSWORD:w6TIsXDPGB3azvxdu/vF}
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 2  #初始建立连接数量
+      minIdle: 2  #最小连接数量
+      maxActive: 5 #最大连接数量
+      maxWait: 10000  #获取连接最大等待时间，毫秒
+      testOnBorrow: true #申请连接时检测连接是否有效
+      testOnReturn: false #归还连接时检测连接是否有效
+      timeBetweenEvictionRunsMillis: 60000 #配置间隔检测连接是否有效的时间（单位是毫秒）
+      minEvictableIdleTimeMillis: 300000  #连接在连接池的最小生存时间（毫秒）
+  #redis 配置
+  redis:
+    host: ${REDIS_HOST:123.56.155.31}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:cqh123}
+    database: ${REDIS_DATABASE:15}
+    timeout: 5000ms
+    jedis:
+      pool:
+        # 连接池最大连接数（使用负值表示没有限制）
+        max-active: 20
+        # 连接池最大阻塞等待时间（使用负值表示没有限制）
+        max-wait: -1ms
+        # 连接池中的最大空闲连接
+        max-idle: 8
+        # 连接池中的最小空闲连接
+        min-idle: 0
+auth:
+  tokenValiditySeconds: 1200  #token存储到redis的过期时间
+  clientId: lmWebApp
+  clientSecret: test123
+  cookieDomain: lejian.com
+  cookieMaxAge: -1
+req:
+  type: "http://"
+
+

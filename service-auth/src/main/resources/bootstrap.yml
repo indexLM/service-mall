@@ -1,0 +1,20 @@
+server:
+  port: 10001
+spring:
+  profiles:
+    active: dev  #开发环境
+  application:
+    name: lecare-service-auth
+  cloud:
+    nacos:
+      config:
+        server-addr: ${NACOS_ADDRESS:127.0.0.1:8848}
+        namespace: ${NACOS_NAMESPACE:lecare-develop}
+        file-extension: yaml
+        prefix: lecare-service-auth
+        group: DEFAULT_GROUP
+#  zipkin:
+#    server-addr: 127.0.0.1:8848
+#  sleuth:
+#    sampler:
+#      probability: 1.0
