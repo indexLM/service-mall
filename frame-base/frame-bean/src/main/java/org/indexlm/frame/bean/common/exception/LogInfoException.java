@@ -11,11 +11,10 @@ import org.indexlm.frame.bean.common.ResultCode;
  * @since 2020/7/10
  */
 public class LogInfoException extends RuntimeException {
-
     /**
-     * 状态码
+     * 结果状态信息
      */
-    int code;
+    ResultCode resultCode;
     /**
      * 信息
      */
@@ -30,7 +29,7 @@ public class LogInfoException extends RuntimeException {
      */
     private LogInfoException(ResultCode resultCode) {
         super("状态码:" + resultCode.code() + "状态信息:" + resultCode.message());
-        this.code = resultCode.code();
+        this.resultCode=resultCode;
         this.message = resultCode.message();
     }
 
@@ -45,7 +44,7 @@ public class LogInfoException extends RuntimeException {
      */
     protected LogInfoException(ResultCode resultCode, String message) {
         super("状态码:" + resultCode.code() + "状态信息:" + (StrUtil.isBlank(message) ? resultCode.message() : message));
-        this.code = resultCode.code();
+        this.resultCode=resultCode;
         this.message = message;
     }
 
@@ -82,7 +81,8 @@ public class LogInfoException extends RuntimeException {
     public static void cast(String message) {
         throw new LogInfoException(CommonCode.FAIL, message);
     }
-    public int getCode() {
-        return code;
+
+    public ResultCode getResultCode() {
+        return resultCode;
     }
 }

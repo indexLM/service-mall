@@ -17,10 +17,19 @@ public enum CommonCode implements ResultCode  {
      */
     FAIL(11111, "操作失败"),
 
+
     /**
      * 非法参数
      */
     INVALID_PARAM( 10001, "非法参数"),
+    /**
+     * 错误的请求方式
+     */
+    WRONG_WAY_TO_REQUEST(10006, "错误的请求方式"),
+    /**
+     * 网络开了个小差,请稍后再试
+     */
+    SERVER_ERROR(99999, "网络开了个小差,请稍后再试"),
 ;
     /**
      * 操作代码

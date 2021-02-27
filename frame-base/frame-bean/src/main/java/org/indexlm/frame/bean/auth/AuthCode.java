@@ -19,10 +19,15 @@ public enum AuthCode implements ResultCode  {
     /**
      * 登录失败
      */
-    LOGIN_FAILED( 10013, "登录失败"),    /**
-     * 登录失败
+    LOGIN_FAILED( 10013, "登录失败"),
+    /**
+     * 无效的请求头
      */
     UN_AUTHORISE( 10014, "无效的请求头"),
+    /**
+     * 令牌已过期
+     */
+    TOKEN_EXPIRE( 10015, "令牌已过期"),
     ;
     /**
      * 操作代码
