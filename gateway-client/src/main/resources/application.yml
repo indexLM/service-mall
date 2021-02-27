@@ -1,0 +1,65 @@
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-connections: 50000 #服务器在任何给定时间接受和处理的最大连接数
+    #    max-http-header-size:    #HTTP消息头的最大大小（以字节为单位）
+    max-http-form-post-size: #HTTP post内容的最大大小（以字节为单位）
+    max-threads: 200 #最大工作线程数
+    min-spare-threads: 10 # 最小工作线程数.
+spring:
+  servlet:
+    multipart:
+      max-file-size: 524288000000
+      max-request-size: 52428800000  #文件上传最大尺寸1.5
+  http:
+    encoding: # 解决响应乱码问题
+      force: true
+      charset: UTF-8
+      enabled: true
+  task: #线程池配置
+    execution:
+      pool:
+        core-size: 5
+        max-size: 20
+        keep-alive: 200
+        queue-capacity: 500
+  main:
+    allow-bean-definition-overriding: true #访问项目路径 解决springBoot2.1 不兼容问题
+  aop:
+    auto: true
+#mybatisPlus配置
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      db-type: mysql
+      field-strategy: not_empty
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: true
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+#ribbon的超时时间
+ribbon:
+  MaxAutoRetries: 2 #最大重试次数，当Eureka中可以找到服务，但是服务连不上时将会重试
+  MaxAutoRetriesNextServer: 2 #切换实例的重试次数
+  OkToRetryOnAllOperations: true # 对所有的操作请求都进行重试，如果是get则可以，如果是post,put等操作没有实现幂等的情况下是很危险的
+  ConnectTimeout: 10000 #请求连接的超时时间
+  ReadTimeout: 10000 #请求处理的超时时间
+logging:
+  level:
+    com:
+      alibaba:
+        nacos:
+          client:
+            naming: warn

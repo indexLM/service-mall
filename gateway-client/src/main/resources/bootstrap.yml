@@ -4,14 +4,14 @@ spring:
   profiles:
     active: dev  #开发环境
   application:
-    name: service-auth
+    name: gateway-client
   cloud:
     nacos:
       config:
         server-addr: ${NACOS_ADDRESS:127.0.0.1:8848}
         namespace: ${NACOS_NAMESPACE:develop}
         file-extension: yaml
-        prefix: service-auth
+        prefix: gateway-client
         group: DEFAULT_GROUP
 #  zipkin:
 #    server-addr: 127.0.0.1:8848
